@@ -1,5 +1,5 @@
 
-export(bd.MEt.optim,bd.MEt.CI,bd.ME.optim,bd.ME.CI)
+export(bd.shifts.optim)
 
 import(ape, TreeSim)
 
