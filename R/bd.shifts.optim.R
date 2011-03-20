@@ -1,21 +1,23 @@
 bd.shifts.optim <-
-function(x,sampling,grid,start,end,yule=FALSE,ME=FALSE,maxitk=5){
+function(x,sampling,grid,start,end,maxitk=5,yule=FALSE,ME=FALSE,all=FALSE,posdiv=FALSE){
 	print("startest")
+	x<-sort(x)	
 	shifts<-length(sampling)-1
 	cuts<-round((end-start)/grid)
-
 	miniall<-list()
 	estall<-list()
-
 	est0<-bd.ME.optim(x,c(0),c(sampling[1]),yule)
+	if (yule==FALSE){
+	if (est0[[1]]$convergence != 0){
+		print("convergence problem")
+		convfail<-rbind(convfail,c(0,0))
+	}}
 	miniall<-c(miniall,list(c(est0[[1]]$value,est0[[1]]$par)))
 	estall<-c(estall,list(est0))
-
 	timeshifts<-c(0)
-
 	convfail<-vector()
-
 	for (k in 1:shifts){
+		minitime<-0
 		est<-list()
 		lik<-vector()
 		timevec<-vector()
@@ -23,13 +25,43 @@ function(x,sampling,grid,start,end,yule=FALSE,ME=FALSE,maxitk=5){
 		miniindex<-0
 		for (j in 0:(cuts)){
 			time1<-start + j/cuts*(end-start)
+			if (length(which(timeshifts==time1))==0){
 			timevec<-c(timevec,time1)
 			timetemp<-sort(c(timeshifts,time1))
+			dupl<-order(c(timeshifts,time1))[length(c(timeshifts,time1))]-1
 			if (ME==FALSE){
-				temp<-bd.ME.optim(x,timetemp,sampling[1:length(timetemp)],yule,maxitk)
+				inittemp<-miniall[[k]][2:((2*k)+1)]
+				init<-c(inittemp[1:dupl],inittemp[dupl:(k+dupl)],inittemp[(k+dupl):length(inittemp)])
+				}
+			else if ( all==TRUE){
+				if (k>1){
+					inittemp<-miniall[[k]][2:((3*k))]
+					if ((2*k+dupl)<=length(inittemp)){
+						init<-c(inittemp[1:dupl],inittemp[dupl:(k+dupl)],inittemp[(k+dupl):(2*k+dupl-1)],1,inittemp[(2*k+dupl):length(inittemp)])
+					}else{
+						init<-c(inittemp[1:dupl],inittemp[dupl:(k+dupl)],inittemp[(k+dupl):(2*k+dupl-1)],1)}
+				} else {
+					inittemp<-miniall[[k]][2:((2*k)+1)]
+					init<-c(inittemp[1:dupl],inittemp[dupl:(k+dupl)],inittemp[(k+dupl):length(inittemp)],1)
+				}
 			} else {
-				temp<-bd.ME.optim.rho(x,timetemp,sampling[1],yule,maxitk)
-			}
+				inittemp<-miniall[[k]][2:(k+2)]
+				if (length(inittemp)> (dupl+1)){
+					init<- c(inittemp[1:(dupl+1)],1, inittemp[(dupl+2):length(inittemp)])
+				} else {
+					init<- c(inittemp[1:(dupl+1)],1)
+				}}	
+			if (ME==FALSE){
+				temp<-bd.ME.optim(x,timetemp,sampling[1:length(timetemp)],yule,maxitk,init,posdiv)}
+				#test<-partransformvector(c(init,timetemp[-1]))
+				#test2<-treemrca(x,test[3,],test[1,],test[2,],sampling[1:length(timetemp)])
+			else if ( all==TRUE){
+				temp<-bd.ME.optim.rho.all(x,timetemp,sampling[1],yule,maxitk,init,posdiv)
+				#test<-partransformvectorrho(c(init,timetemp[-1]),sampling[1])
+				#test2<-treemrca(x,test[4,],test[1,],test[2,],test[3,])
+			} else {
+				print(init)
+				temp<-bd.ME.optim.rho(x,timetemp,sampling[1],yule,maxitk,init,posdiv)}
 			if (temp[[1]]$convergence != 0){
 				print("convergence problem")
 				convfail<-rbind(convfail,c(k,time1))
@@ -37,18 +69,22 @@ function(x,sampling,grid,start,end,yule=FALSE,ME=FALSE,maxitk=5){
 			lik<-c(lik,temp[[1]]$value)
 			if (temp[[1]]$value<mini[1] && length(which(time1==timeshifts))==0){
 				mini<-c(temp[[1]]$value,temp[[1]]$par,timetemp[2:length(timetemp)])
+				minitime<-timetemp
 				miniindex<-(j+1)
 			}
-			#print(mini)
+			#print(c("numbershifts","shift time","init"))
 			print(c(k,time1))
+			print(c(temp[[1]]$value,temp[[1]]$par,timetemp[2:length(timetemp)]))
+			#print(test2)
+			#print(init)
 			est<-c(est,list(temp))	
+		}
 		}
 	estall<-c(estall,list(est))
 	miniall<-c(miniall,list(mini))
-	print(mini)
-	timeshifts<-c(timeshifts,mini[length(mini)])
+	print(miniall)
+	timeshifts<-minitime
 	}
-	#print(miniindex)
 	out<-list(estall,miniall,timevec,estall[[shifts+1]][[miniindex]],convfail)
 	out
 }

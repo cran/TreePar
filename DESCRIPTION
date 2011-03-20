@@ -2,8 +2,8 @@ Package: TreePar
 Type: Package
 Title: Estimating diversification rate changes and mass extinction
         events in phylogenies
-Version: 1.1
-Date: 2010-06-17
+Version: 1.2
+Date: 2011-03-20
 Author: Tanja Stadler
 Maintainer: Tanja Stadler <tanja.stadler@env.ethz.ch>
 Depends: ape, TreeSim
@@ -25,6 +25,6 @@ Description: For a given phylogeny on present day data which is
         "pull of the present" effect.
 License: GPL-2
 LazyLoad: yes
-Packaged: 2011-01-25 15:55:56 UTC; tanja
+Packaged: 2011-03-20 20:12:14 UTC; tanja
 Repository: CRAN
-Date/Publication: 2011-01-25 16:56:10
+Date/Publication: 2011-03-21 06:46:44

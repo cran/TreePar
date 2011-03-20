@@ -8,7 +8,7 @@ bd.shifts.optim: Estimating diversification rate changes and mass extinction eve
 bd.shifts.optim estimates the maximum likelihood speciation and extinction rates together with the rate shift times t=(t_1,t_2 .., t_m) in a (possibly incomplete sampled) phylogeny. At the times t, the rates are allowed to change and the species may undergo a mass extinction event. 
 }
 \usage{
-bd.shifts.optim(x, sampling, grid, start, end, yule = FALSE, ME = FALSE, maxitk = 5)
+bd.shifts.optim(x, sampling, grid, start, end, maxitk = 5, yule = FALSE, ME = FALSE, all = FALSE, posdiv = FALSE)
 }
 \arguments{
   \item{x}{
@@ -22,22 +22,28 @@ The model parameters are optimized for different fixed rate shift times. The fix
    \item{yule}{
 yule=TRUE sets the extinction rates to zero.
 }
-  \item{ME}{
-ME=FALSE uses the mass extinction fractions specified in sampling and does not estimate them. If ME=FALSE is used with sampling=c(1,1, .. , 1), no mass extinction events are considered.
-}
   \item{maxitk}{
 Integer value defining how many iterations shall be done in the optimization. Default is 5, but needs to be increased if too many warnings "convergence problem" appear.
+}
+  \item{ME}{
+ME=FALSE (default) uses the mass extinction fractions specified in sampling and does not estimate them. If ME=FALSE is used with sampling=c(1,1, .. , 1), no mass extinction events are considered.
+}
+  \item{all}{
+Only relevant when ME=TRUE. all=FALSE (default and recommended) estimates one speciation and one extinction rate for the whole tree, and estimates the intensities sampling_i (i>1) of mass extinction events. all=TRUE allows for varying speciation and extinction rates. Since the parameters might correlate, all=TRUE is not recommended.
+}
+  \item{posdiv}{
+posdiv=FALSE (default) allows the speciation - extinction rate to be negative, i.e. allows for periods of declining diversity. posdiv=TRUE forces the speciation - extinction rate to be positive.
 }
 }
 \value{
 \item{res[[1]][[i]]}{List of maximum likelihood parameter estimates for each fixed t where i-1 shifts are allowed to occur (i in 1:m).}
-\item{res[[2]][[i]]}{Maximum likelihood parameter estimates for i-1 shifts (i in 1:m): First entry is the likelihood value. The next i entries are the turnover (extinction/speciation) estimates, for the successive intervals going back in time. The next i entries are the diversification rate estimates (speciation-extinction). The next i-1 entries are the sampling estimates (if ME=TRUE). The last i-1 entries are the shift times.}
+\item{res[[2]][[i]]}{Maximum likelihood parameter estimates for i-1 shifts (i in 1:m): First entry is the (-log likelihood) value. The next i entries are the turnover (extinction/speciation) estimates, for the successive intervals going back in time. The next i entries are the diversification rate estimates (speciation-extinction). The next i-1 entries are the sampling estimates (if ME=TRUE). The last i-1 entries are the shift times. (Note: if ME=TRUE and all==FALSE, the second entry is the turnover, the third the diversification rate, followed by the sampling estimates).}
 \item{res[[3]]}{Vector of time points where the function was evaluated.}
 \item{res[[4]]}{Maximum likelihood estimates for m-1 shifts.}
 \item{res[[5]]}{Array specifying the time points when there was a convergence problem: a row of res[[5]] with entry (i,t_i) means that when adding the i-th shift at time t_i, a convergence problem was encountered.}
 }
 \references{
-T. Stadler: Mammalian phylogeny reveals recent diversification rate shifts. Submitted. 2010.
+T. Stadler: Mammalian phylogeny reveals recent diversification rate shifts. In press, PNAS, 2011.
 }
 \author{
 Tanja Stadler 
@@ -76,8 +82,8 @@ res[[2]]
 resyule <- bd.shifts.optim(x,rho,grid,start,end,yule=TRUE)
 resyule[[2]]
 }
-\keyword{diversification rates}
-\keyword{rate shifts}
-\keyword{mass extinction}
-\keyword{maximum likelihood rates}
-\keyword{phylogeny}
+%\keyword{diversification rates}
+%\keyword{rate shifts}
+%\keyword{mass extinction}
+%\keyword{maximum likelihood rates}
+%\keyword{phylogeny}

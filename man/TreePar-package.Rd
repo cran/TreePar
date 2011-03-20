@@ -12,8 +12,8 @@ For a given phylogeny on present day data which is calibrated to calendar-time, 
 \tabular{ll}{
 Package: \tab TreePar\cr
 Type: \tab Package\cr
-Version: \tab 1.1\cr
-Date: \tab 2010-06-17\cr
+Version: \tab 1.2\cr
+Date: \tab 2011-03-20\cr
 License: \tab GPL-2 \cr
 LazyLoad: \tab yes\cr
 }
@@ -24,9 +24,9 @@ Tanja Stadler
  <http://www.tb.ethz.ch/people/tstadler>
 }
 \references{
-T. Stadler: Mammalian phylogeny reveals recent diversification rate shifts. Submitted. 2010.
+T. Stadler: Mammalian phylogeny reveals recent diversification rate shifts. In press, PNAS, 2011.
 }
-\keyword{diversification rates, rate shifts, mass extinction, maximum likelihood rates, phylogeny}
+%\keyword{tree, phylogeny, diversification, mass extinction, maximum likelihood}
 \seealso{
 \code{ape}
 \code{TreeSim}

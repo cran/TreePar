@@ -1,5 +1,5 @@
 bd.ME.optim <-
-function (x,t,rho,yule = FALSE,maxitk=5)  {
+function (x,t,rho,yule = FALSE,maxitk=5,init=c(-1),posdiv=FALSE)  {
 	if (yule==TRUE) {
 		res<-bd.MEyule.optim(x,t,rho)
 		} else {
@@ -14,24 +14,19 @@ function (x,t,rho,yule = FALSE,maxitk=5)  {
     		mutemp<-p[i] * p[i+help]/(1-p[i])
 			l<-c(l, ltemp)
     		mu<- c(mu,mutemp)
-    		if ((mutemp<0) || (mutemp >= ltemp) || (ltemp<=0)) {
-    			boundary=0
-    			} 
     	}
-    	if (boundary==1 ){
-        	out<- treemrca(x,t,l,mu,rho)}
-        else {out<-10^12}
+      	out<- treemrca(x,t,l,mu,rho,posdiv) 
         out
     }
     numb<-length(rho)
+    if(init[1] == -1){
     init<-vector()
     for (i in 1:numb){
     	init<-c(0.001,init,0.05)
-    	#init<-c(0.9,init,0.001)
-    	}
+    }}
 	out <- optim(init, dev,control=list(maxit=10000)) #,method="SANN"
 	k<-1
-    while (out$convergence != 0 && k<maxitk){ 
+    while (out$convergence != 0 && k<maxitk && 10000*10^k<.Machine$integer.max ){ 
     	out <- optim(init, dev,control=list(maxit=10000*10^k)) 
     	k<-k+1
     }
