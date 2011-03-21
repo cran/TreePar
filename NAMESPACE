@@ -1,5 +1,5 @@
 
-export(bd.shifts.optim)
+export(bd.shifts.optim,bd.densdep.optim)
 
 import(ape, TreeSim)
 

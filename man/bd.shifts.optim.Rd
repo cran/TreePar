@@ -2,7 +2,7 @@
 \alias{bd.shifts.optim}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-bd.shifts.optim: Estimating diversification rate changes and mass extinction events in phylogenies
+bd.shifts.optim: Estimating speciation and extinction rate changes and mass extinction events in phylogenies
 }
 \description{
 bd.shifts.optim estimates the maximum likelihood speciation and extinction rates together with the rate shift times t=(t_1,t_2 .., t_m) in a (possibly incomplete sampled) phylogeny. At the times t, the rates are allowed to change and the species may undergo a mass extinction event. 
