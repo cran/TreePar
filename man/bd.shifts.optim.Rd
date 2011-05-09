@@ -8,11 +8,11 @@ bd.shifts.optim: Estimating speciation and extinction rate changes and mass exti
 bd.shifts.optim estimates the maximum likelihood speciation and extinction rates together with the rate shift times t=(t_1,t_2 .., t_m) in a (possibly incomplete sampled) phylogeny. At the times t, the rates are allowed to change and the species may undergo a mass extinction event. 
 }
 \usage{
-bd.shifts.optim(x, sampling, grid, start, end, maxitk = 5, yule = FALSE, ME = FALSE, all = FALSE, posdiv = FALSE)
+bd.shifts.optim(x, sampling, grid, start, end, maxitk = 5, yule = FALSE, ME = FALSE, all = FALSE, posdiv = FALSE, miniall = c(0))
 }
 \arguments{
   \item{x}{
-Vector of speciation times in the phylogeny. Time is measured increasing going into the past with the present being time 0.
+Vector of speciation times in the phylogeny. Time is measured increasing going into the past with the present being time 0. x can be obtained from a phylogenetic tree using getx(TREE).
 }
   \item{sampling}{
 Vector of length m. sampling_i is the probability of a species surviving the mass extinction at time t_i. sampling_1 is the probability of an extant species being sampled. sampling_1=1 means that the considered phylogeny is complete. sampling_i=1 (i>1) means that at time t_i, a rate shift may occur but no species go extinct. If ME=TRUE, all entries but sampling_1 will be discarded as they are estimated (however, input a vector sampling of the appropriate length such that the program knows how many mass extinction events you want to allow for).
@@ -34,6 +34,9 @@ Only relevant when ME=TRUE. all=FALSE (default and recommended) estimates one sp
   \item{posdiv}{
 posdiv=FALSE (default) allows the speciation - extinction rate to be negative, i.e. allows for periods of declining diversity. posdiv=TRUE forces the speciation - extinction rate to be positive.
 }
+  \item{miniall}{
+If you run the bd.shifts.optim for k shifts, but you now want to have K>k shifts, then set for continuing the analysis: update sampling, and set miniall=res[[2]] where res[[2]] is the output from the run with k shifts.
+}
 }
 \value{
 \item{res[[1]][[i]]}{List of maximum likelihood parameter estimates for each fixed t where i-1 shifts are allowed to occur (i in 1:m).}
@@ -43,7 +46,7 @@ posdiv=FALSE (default) allows the speciation - extinction rate to be negative, i
 \item{res[[5]]}{Array specifying the time points when there was a convergence problem: a row of res[[5]] with entry (i,t_i) means that when adding the i-th shift at time t_i, a convergence problem was encountered.}
 }
 \references{
-T. Stadler: Mammalian phylogeny reveals recent diversification rate shifts. In press, PNAS, 2011.
+T. Stadler: Mammalian phylogeny reveals recent diversification rate shifts. PNAS 108 (15), 6187-6192, 2011.
 }
 \author{
 Tanja Stadler 
@@ -65,7 +68,7 @@ mu <- c(1,1,0)
 # Simulation of a tree:
 tree<-sim.rateshift.taxa(nspecies,1,lambda,mu,frac=rho,times=time,complete=FALSE)
 # Extracting the speciation times x:
-x<-sort(branching.times(tree[[1]]),decreasing=TRUE)
+x<-sort(getx(tree[[1]][[1]]),decreasing=TRUE)
 
 # When estimating the shift times t for x, we allow the shift times to be 0.6, 0.8, 1, 1.2, .. ,2.4:
 start <- 0.6

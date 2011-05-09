@@ -1,22 +1,28 @@
-bd.shifts.optim <-
-function(x,sampling,grid,start,end,maxitk=5,yule=FALSE,ME=FALSE,all=FALSE,posdiv=FALSE){
+bd.shifts.optim <- function(x,sampling,grid,start,end,maxitk=5,yule=FALSE,ME=FALSE,all=FALSE,posdiv=FALSE,miniall=c(0)){
 	print("startest")
 	x<-sort(x)	
 	shifts<-length(sampling)-1
-	cuts<-round((end-start)/grid)
-	miniall<-list()
+	cuts<-round((end-start)/grid)	
 	estall<-list()
-	est0<-bd.ME.optim(x,c(0),c(sampling[1]),yule)
-	if (yule==FALSE){
-	if (est0[[1]]$convergence != 0){
-		print("convergence problem")
-		convfail<-rbind(convfail,c(0,0))
-	}}
-	miniall<-c(miniall,list(c(est0[[1]]$value,est0[[1]]$par)))
-	estall<-c(estall,list(est0))
-	timeshifts<-c(0)
 	convfail<-vector()
-	for (k in 1:shifts){
+	if (length(miniall)==1){
+		miniall<-list()
+		est0<-bd.ME.optim(x,c(0),c(sampling[1]),yule)
+		if (yule==FALSE){
+		if (est0[[1]]$convergence != 0){
+			print("convergence problem")
+			convfail<-rbind(convfail,c(0,0))
+		}}
+		miniall<-c(miniall,list(c(est0[[1]]$value,est0[[1]]$par)))
+		estall<-c(estall,list(est0)) 
+		timeshifts<-c(0)
+		lower<-1
+	} else {
+		lower<-length(miniall)
+		help<-miniall[[lower]]
+		timeshifts<-help[(length(help)-lower+2):length(help)]
+	}
+	for (k in lower:shifts){
 		minitime<-0
 		est<-list()
 		lik<-vector()
@@ -88,4 +94,3 @@ function(x,sampling,grid,start,end,maxitk=5,yule=FALSE,ME=FALSE,all=FALSE,posdiv
 	out<-list(estall,miniall,timevec,estall[[shifts+1]][[miniindex]],convfail)
 	out
 }
-
