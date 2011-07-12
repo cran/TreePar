@@ -1,4 +1,5 @@
 bd.densdep.optim<-function(x,minK=0,maxK=0,discrete=TRUE,continuous=FALSE,lambdainit=2,muinit=1,Kinit=0){
+	x<-sort(x)
 	if (minK==0) {minK<-length(x)+1}
 	if (maxK==0) {maxK<-round(minK*1.5)}
 	resdiscrete<-0

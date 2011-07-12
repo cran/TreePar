@@ -20,7 +20,7 @@ bd.shifts.optim <- function(x,sampling,grid,start,end,maxitk=5,yule=FALSE,ME=FAL
 	} else {
 		lower<-length(miniall)
 		help<-miniall[[lower]]
-		timeshifts<-help[(length(help)-lower+2):length(help)]
+		timeshifts<-c(0,help[(length(help)-lower+2):length(help)])
 	}
 	for (k in lower:shifts){
 		minitime<-0
@@ -29,9 +29,11 @@ bd.shifts.optim <- function(x,sampling,grid,start,end,maxitk=5,yule=FALSE,ME=FAL
 		timevec<-vector()
 		mini<-c(200000)
 		miniindex<-0
+		jreal<-0
 		for (j in 0:(cuts)){
 			time1<-start + j/cuts*(end-start)
 			if (length(which(timeshifts==time1))==0){
+			jreal<-jreal+1
 			timevec<-c(timevec,time1)
 			timetemp<-sort(c(timeshifts,time1))
 			dupl<-order(c(timeshifts,time1))[length(c(timeshifts,time1))]-1
@@ -76,7 +78,7 @@ bd.shifts.optim <- function(x,sampling,grid,start,end,maxitk=5,yule=FALSE,ME=FAL
 			if (temp[[1]]$value<mini[1] && length(which(time1==timeshifts))==0){
 				mini<-c(temp[[1]]$value,temp[[1]]$par,timetemp[2:length(timetemp)])
 				minitime<-timetemp
-				miniindex<-(j+1)
+				miniindex<-(jreal+1)
 			}
 			#print(c("numbershifts","shift time","init"))
 			print(c(k,time1))
@@ -91,6 +93,6 @@ bd.shifts.optim <- function(x,sampling,grid,start,end,maxitk=5,yule=FALSE,ME=FAL
 	print(miniall)
 	timeshifts<-minitime
 	}
-	out<-list(estall,miniall,timevec,estall[[shifts+1]][[miniindex]],convfail)
+	out<-list(estall,miniall,timevec,convfail)
 	out
 }

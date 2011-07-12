@@ -27,10 +27,11 @@ If continuous=TRUE, the likelihood function is maximized with K being a continuo
   \item{Kinit}{Initial K value for optimization when K is continuous (default is (number of species)+1).}
 }
 \value{
-\item{res}{Maximum likelihood speciation and extinction rate and the saturation value K; the first value is the result when K being discrete (0 if discrete=FALSE) and the second value is the result when K being continuous (0 if continuous=FALSE).}
+\item{res}{Maximum likelihood speciation and extinction rate and the saturation value K; the first entry, res[[1]], is the result when K being discrete (0 if discrete=FALSE) and the second entry, res[[2]], is the result when K being continuous (0 if continuous=FALSE). $par is (lambda,mu,K). $value is -likelihood.}
 }
-%\references{
-%}
+\references{
+T. Stadler: Estimating speciation and extinction rates under density-dependent models. Manuscript.
+}
 \author{
 Tanja Stadler 
 }

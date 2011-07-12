@@ -42,8 +42,7 @@ If you run the bd.shifts.optim for k shifts, but you now want to have K>k shifts
 \item{res[[1]][[i]]}{List of maximum likelihood parameter estimates for each fixed t where i-1 shifts are allowed to occur (i in 1:m).}
 \item{res[[2]][[i]]}{Maximum likelihood parameter estimates for i-1 shifts (i in 1:m): First entry is the (-log likelihood) value. The next i entries are the turnover (extinction/speciation) estimates, for the successive intervals going back in time. The next i entries are the diversification rate estimates (speciation-extinction). The next i-1 entries are the sampling estimates (if ME=TRUE). The last i-1 entries are the shift times. (Note: if ME=TRUE and all==FALSE, the second entry is the turnover, the third the diversification rate, followed by the sampling estimates).}
 \item{res[[3]]}{Vector of time points where the function was evaluated.}
-\item{res[[4]]}{Maximum likelihood estimates for m-1 shifts.}
-\item{res[[5]]}{Array specifying the time points when there was a convergence problem: a row of res[[5]] with entry (i,t_i) means that when adding the i-th shift at time t_i, a convergence problem was encountered.}
+\item{res[[4]]}{Array specifying the time points when there was a convergence problem: a row of res[[4]] with entry (i,t_i) means that when adding the i-th shift at time t_i, a convergence problem was encountered.}
 }
 \references{
 T. Stadler: Mammalian phylogeny reveals recent diversification rate shifts. PNAS 108 (15), 6187-6192, 2011.
