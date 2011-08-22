@@ -13,8 +13,8 @@ For a given phylogeny on higher taxa, but where the number of species is known w
 \tabular{ll}{
 Package: \tab TreePar\cr
 Type: \tab Package\cr
-Version: \tab 2.1\cr
-Date: \tab 2011-07-12\cr
+Version: \tab 2.1.2\cr
+Date: \tab 2011-08-22\cr
 License: \tab GPL-2 \cr
 LazyLoad: \tab yes\cr
 }

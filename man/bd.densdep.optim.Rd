@@ -30,7 +30,7 @@ If continuous=TRUE, the likelihood function is maximized with K being a continuo
 \item{res}{Maximum likelihood speciation and extinction rate and the saturation value K; the first entry, res[[1]], is the result when K being discrete (0 if discrete=FALSE) and the second entry, res[[2]], is the result when K being continuous (0 if continuous=FALSE). $par is (lambda,mu,K). $value is -likelihood.}
 }
 \references{
-T. Stadler: Estimating speciation and extinction rates under density-dependent models. Manuscript.
+R.S. Etienne, B. Haegeman, T. Stadler, T. Aze, P.N. Pearson, A. Purvis and A.B. Phillimore: Diversity-dependence makes molecular phylogenies consistent with the fossil record. Submitted to Proc. Roy. Soc. B.
 }
 \author{
 Tanja Stadler 

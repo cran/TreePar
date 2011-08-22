@@ -1,8 +1,8 @@
 Package: TreePar
 Type: Package
 Title: Estimating speciation and extinction rates based on phylogenies
-Version: 2.1
-Date: 2011-07-12
+Version: 2.1.2
+Date: 2011-08-22
 Author: Tanja Stadler
 Maintainer: Tanja Stadler <tanja.stadler@env.ethz.ch>
 Depends: ape, Matrix, subplex, TreeSim
@@ -22,6 +22,6 @@ Description: For a given species phylogeny on present day data which is
         constant (implemented as bd.groups.optim).
 License: GPL-2
 LazyLoad: yes
-Packaged: 2011-07-13 10:38:33 UTC; tanja
+Packaged: 2011-08-23 11:17:18 UTC; tanja
 Repository: CRAN
-Date/Publication: 2011-07-23 13:04:47
+Date/Publication: 2011-08-23 20:02:49
