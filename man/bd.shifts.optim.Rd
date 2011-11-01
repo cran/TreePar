@@ -44,6 +44,9 @@ If you run the bd.shifts.optim for k shifts, but you now want to have K>k shifts
 \item{res[[3]]}{Vector of time points where the function was evaluated.}
 \item{res[[4]]}{Array specifying the time points when there was a convergence problem: a row of res[[4]] with entry (i,t_i) means that when adding the i-th shift at time t_i, a convergence problem was encountered.}
 }
+\note{
+The likelihood is calculated assuming there were two lineages at the time of the root. The likelihood is NOT conditioned on survival of the two lineages. Likelihood-values from bd.densdep.optim are directly comparable (eg AIC). Likelihood-values from laser are comparable after the transformation -res+(sum(log(2:length(x)))-(length(x)-1)*log(2)).
+}
 \references{
 T. Stadler: Mammalian phylogeny reveals recent diversification rate shifts. PNAS 108 (15), 6187-6192, 2011.
 }

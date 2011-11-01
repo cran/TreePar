@@ -13,8 +13,8 @@ For a given phylogeny on higher taxa, but where the number of species is known w
 \tabular{ll}{
 Package: \tab TreePar\cr
 Type: \tab Package\cr
-Version: \tab 2.1.2\cr
-Date: \tab 2011-08-22\cr
+Version: \tab 2.2\cr
+Date: \tab 2011-11-01\cr
 License: \tab GPL-2 \cr
 LazyLoad: \tab yes\cr
 }
@@ -27,7 +27,7 @@ Tanja Stadler
 \references{
 T. Stadler: Mammalian phylogeny reveals recent diversification rate shifts. PNAS 108 (15), 6187-6192, 2011.
 
-T. Stadler: Estimating speciation and extinction rates under density-dependent models. Manuscript.
+R.S. Etienne, B. Haegeman, T. Stadler, T. Aze, P.N. Pearson, A. Purvis and A.B. Phillimore: Diversity-dependence brings molecular phylogenies closer to agreement with the fossil record. Proc. Roy. Soc. B, doi: 10.1098/rspb.2011.1439, 2011.
 
 T. Stadler, F. Bokma: Estimating speciation and extinction rates for phylogenies of higher taxa. Submitted, 2011.
 }

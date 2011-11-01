@@ -1,13 +1,24 @@
-LikComp2<-function(par,model=-1,x,Ndec=-1,minN=0,psi=0,rho=1,ttype=0,root=0,ki=0) {
+LikComp2<-function(par,model=-1,x,Ndec=-1,minN=0,psi=0,rho=1,ttype=0,root=0,ki=0,muset=0) {
+	beta<-par[1]
+	k<-2
+	if (muset<0) {mu<- - muset
+		if (mu==100000) {mu<-0}
+		}
+	else {mu<-par[2]
+		k<-3
+		}
+	
+	mumin<-0
+	if (muset>0) {mumin<-muset}
+	
 	if (model== -1) {SI<-TRUE} else {SI<-FALSE}
 	times<-x
 	if (ttype==0) {ttype<-times*0+1}
 	if (Ndec<0){
-		Ndec<-par[3]}
+		Ndec<-par[k]}
 	N<-Ndec
-	beta<-par[1]
-	mu<-par[2]
-if (beta<0  || mu < 0 ){p<- - 10^100} else { 
+
+if (beta<0  || mu < mumin ){p<- - 10^100} else { 
 if (root==1){times<-c(times,max(times))   #new
 		ttype<-c(ttype,1)
 		}
@@ -75,7 +86,9 @@ if (root==1){times<-c(times,max(times))   #new
     }
   }
   p<-p[1]		#new
-  if (root==1){p<-p/(2*lambda(1,SI))}}
+  if (root==1){p<-p/(2*lambda(1,SI))}
+  p<-log(p)
+  }
   -p
 }
 

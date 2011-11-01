@@ -1,5 +1,5 @@
 
-export(bd.shifts.optim,bd.densdep.optim,bd.groups.optim,getx,treemrca)
+export(bd.shifts.optim,bd.densdep.optim,bd.groups.optim,getx,treemrcashifts)
 
 import(ape, TreeSim)
 

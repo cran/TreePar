@@ -1,7 +1,9 @@
-bd.densdep.optim.discrete<-function(x,maxN,minN){
-minlik<-0
+bd.densdep.optim.discrete<-function(x,maxN,minN,muset,model=-1,rho){
+minlik<-10^100
 for (k in minN:maxN){
-	res<-subplex(c(2,1),LikComp2,model=-1,root=1,x=x,Ndec=k,minN=minN)
+	init<-c(2,1)
+	if (muset<0) {init<-c(2)}
+	res<-subplex(init,LikComp2,model=model,root=1,x=x,Ndec=k,minN=minN,muset=muset,rho=rho)
 	print(k)
 	print(res)
 	if (res$value<minlik){

@@ -2,7 +2,7 @@ bd.MEyule.optim <-
 function (x,t,rho,maxitk=5,init=c(-1))  {
 	x<-sort(x)
     dev <- function(p) {
-        out<- treemrca(x,t,p,p*0,rho)
+        out<- treemrcashifts(x,t,p,p*0,rho)
         out
     }
     numb<-length(rho)

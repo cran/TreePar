@@ -15,7 +15,7 @@ function (x,t,sampling,yule = FALSE,maxitk=5,init=c(-1),posdiv=FALSE)  {
     		mu<- c(mu,mutemp)
    	     }
     	rho<-c(sampling,p[(2*help+1):length(p)])
-        out<- treemrca(x,t,l,mu,rho,posdiv) 
+        out<- treemrcashifts(x,t,l,mu,rho,posdiv) 
         out
     }
     numb<-length(t)

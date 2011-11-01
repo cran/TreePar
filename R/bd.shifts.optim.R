@@ -1,8 +1,8 @@
 bd.shifts.optim <- function(x,sampling,grid,start,end,maxitk=5,yule=FALSE,ME=FALSE,all=FALSE,posdiv=FALSE,miniall=c(0)){
 	print("startest")
+	print("test")
 	x<-sort(x)	
 	shifts<-length(sampling)-1
-	cuts<-round((end-start)/grid)	
 	estall<-list()
 	convfail<-vector()
 	if (length(miniall)==1){
@@ -17,11 +17,14 @@ bd.shifts.optim <- function(x,sampling,grid,start,end,maxitk=5,yule=FALSE,ME=FAL
 		estall<-c(estall,list(est0)) 
 		timeshifts<-c(0)
 		lower<-1
+		timevec<-vector()
 	} else {
 		lower<-length(miniall)
 		help<-miniall[[lower]]
 		timeshifts<-c(0,help[(length(help)-lower+2):length(help)])
 	}
+	if (length(sampling)>1){
+			cuts<-round((end-start)/grid)	
 	for (k in lower:shifts){
 		minitime<-0
 		est<-list()
@@ -92,7 +95,7 @@ bd.shifts.optim <- function(x,sampling,grid,start,end,maxitk=5,yule=FALSE,ME=FAL
 	miniall<-c(miniall,list(mini))
 	print(miniall)
 	timeshifts<-minitime
-	}
+	}}
 	out<-list(estall,miniall,timevec,convfail)
 	out
 }

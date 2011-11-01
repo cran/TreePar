@@ -1,4 +1,4 @@
-treemrca <-
+treemrcashifts <-
 function(x,t,l,mu,sampling,posdiv=FALSE) {
 	res<- -10^12
 	boundary<-0
@@ -13,9 +13,10 @@ function(x,t,l,mu,sampling,posdiv=FALSE) {
 	x<-sort(x)
 	n<-lineages(x,t)
 	mrca<-x[length(x)]
-	res<- n[1]*log(sampling[1])  + n[1]* log((l[1]-mu[1])^2) + 2 * log(g(mrca,t,l,mu,sampling))-2*log(1-q2(inter(mrca,t),mrca,t,l,mu,sampling  ) )
+	res<- n[1]*log(sampling[1])  + n[1]* log((l[1]-mu[1])^2) + 2 * log(g(mrca,t,l,mu,sampling))
+	#res<-res -2*log(1-q2(inter(mrca,t),mrca,t,l,mu,sampling  ) )
 	for (j in 1:(length(x)-1)) {
-		res <- res +log(l[inter(x[j],t)]) + log(g(x[j],t,l,mu,sampling))
+		res <- res +log(2*l[inter(x[j],t)]) + log(g(x[j],t,l,mu,sampling))
 		}
 	if (inter(mrca,t)>1) {
 		for (j in 2:inter(mrca,t)) {
