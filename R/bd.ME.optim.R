@@ -1,7 +1,7 @@
 bd.ME.optim <-
-function (x,t,rho,yule = FALSE,maxitk=5,init=c(-1),posdiv=FALSE)  {
+function (x,t,rho,yule = FALSE,maxitk=5,init=c(-1),posdiv=FALSE,survival=1,groups=0)  {
 	if (yule==TRUE) {
-		res<-bd.MEyule.optim(x,t,rho)
+		res<-bd.MEyule.optim(x,t,rho,groups)
 		} else {
 	x<-sort(x)
     dev <- function(p) {
@@ -15,7 +15,7 @@ function (x,t,rho,yule = FALSE,maxitk=5,init=c(-1),posdiv=FALSE)  {
 			l<-c(l, ltemp)
     		mu<- c(mu,mutemp)
     	}
-      	out<- treemrcashifts(x,t,l,mu,rho,posdiv) 
+      	out<- treemrcashifts(x,t,l,mu,rho,posdiv,survival,groups) 
         out
     }
     numb<-length(rho)
@@ -24,7 +24,11 @@ function (x,t,rho,yule = FALSE,maxitk=5,init=c(-1),posdiv=FALSE)  {
     for (i in 1:numb){
     	init<-c(0.001,init,0.05)
     }}
-	out <- optim(init, dev,control=list(maxit=10000)) #,method="SANN"
+	out <- try(optim(init, dev,control=list(maxit=10000)),silent=TRUE) #,method="SANN"
+	if (class(out) == "try-error"){init<-10*init
+	out <- try(optim(init, dev,control=list(maxit=10000)),silent=TRUE)} #,method="SANN"
+	if (class(out) == "try-error"){init<-init/100
+	out <- optim(init, dev,control=list(maxit=10000))} #,method="SANN"
 	k<-1
     while (out$convergence != 0 && k<maxitk && 10000*10^k<.Machine$integer.max ){ 
     	out <- optim(init, dev,control=list(maxit=10000*10^k)) 

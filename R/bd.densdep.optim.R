@@ -1,4 +1,5 @@
-bd.densdep.optim<-function(x,minK=0,maxK=0,discrete=TRUE,continuous=FALSE,lambdainit=2,muinit=1,Kinit=0,Yule=FALSE,muset=0,rho=1,model=-1){
+bd.densdep.optim<-function(x,minK=0,maxK=0,discrete=TRUE,continuous=FALSE,lambdainit=2,muinit=1,Kinit=0,Yule=FALSE,muset=0,rho=1,model=-1,survival=0){
+	if (survival == 1){"Conditioning on survival is not yet implemented. Please wait for the next version. Method proceeds with not conditioning on survival."}
 	if (Yule==TRUE){muset<- -100000}
 	x<-sort(x)
 	if (minK==0) {minK<-length(x)+1}

@@ -8,7 +8,7 @@ bd.densdep.optim: Estimating speciation and extinction rates in phylogenies unde
 bd.densdep.optim estimates the maximum likelihood speciation and extinction rates under a density-dependent speciation model. Speciation rate is a function of the number of species N, lambda(N) = max(0,lambda(1-N/K)), and extinction rate is mu (constant).
 }
 \usage{
-bd.densdep.optim(x,minK,maxK,discrete=TRUE,continuous=FALSE,lambdainit=2,muinit=1,Kinit=0,Yule=FALSE,muset=0,rho=1,model=-1)
+bd.densdep.optim(x,minK,maxK,discrete=TRUE,continuous=FALSE,lambdainit=2,muinit=1,Kinit=0,Yule=FALSE,muset=0,rho=1,model=-1, survival = 0)
 }
 \arguments{
   \item{x}{
@@ -29,9 +29,10 @@ If continuous=TRUE, the likelihood function is maximized with K being a continuo
   \item{muset}{muset=0 (default) maximizes over the whole parameter range. muset>0 means that the optimization is done over all mu>muset. muset<0 fixes mu=-muset.}
   \item{rho}{rho=1 is default meaning all species are sampled. rho<1 assumes that the phylogeny is incomplete, and each species is included with probability rho.}
   \item{model}{model=-1 (default) is the density-dependent model. model=0 (only relevant for testing purposes) assumes that lambda is constant for number of species < K, and 0 for number of species >= K. model=0 is used for testing / comparing to constant rate model implemented in bd.shifts.optim.}
+  \item{survival}{survival = 0 always; i.e. the method cannot condition on survival of the process (yet).}
 }
 \value{
-\item{res}{Maximum likelihood speciation and extinction rate and the saturation value K; the first entry, res[[1]], is the result when K being discrete (0 if discrete=FALSE) and the second entry, res[[2]], is the result when K being continuous (0 if continuous=FALSE). $par is (lambda,mu,K). $value is -log likelihood. The likelihood is calculated assuming there were two lineages at the time of the root. The likelihood is NOT conditioned on survival of the two lineages. Likelihood-values from bd.shifts.optim are directly comparable (eg AIC). Likelihood-values from laser are comparable after the transformation -$value+(sum(log(2:length(x)))-(length(x)-1)*log(2)).}
+\item{res}{Maximum likelihood speciation and extinction rate and the saturation value K; the first entry, res[[1]], is the result when K being discrete (0 if discrete=FALSE) and the second entry, res[[2]], is the result when K being continuous (0 if continuous=FALSE). $par is (lambda,mu,K). $value is -log likelihood. The likelihood is calculated assuming there were two lineages at the time of the root. The likelihood is NOT conditioned on survival of the two lineages. Likelihood-values from bd.shifts.optim are directly comparable (eg AIC) for survival = 0. Likelihood-values from laser are comparable for survival = 0 after the transformation -$value+(sum(log(2:length(x)))-(length(x)-1)*log(2)).}
 }
 \note{
 bd.densdep.optim(x,Yule=TRUE,discrete=FALSE,cont=TRUE) in TreePar and DDL(x) in Laser return the same results (up to transforming the -log likelihood ($value) from TreePar via -$value+(sum(log(2:length(x)))-(length(x)-1)*log(2))
@@ -40,7 +41,8 @@ bd.densdep.optim(x,Yule=TRUE,discrete=FALSE,cont=TRUE) in TreePar and DDL(x) in 
 R.S. Etienne, B. Haegeman, T. Stadler, T. Aze, P.N. Pearson, A. Purvis and A.B. Phillimore: Diversity-dependence brings molecular phylogenies closer to agreement with the fossil record. Submitted to Proc. Roy. Soc. B.
 }
 \author{
-Tanja Stadler 
+Tanja Stadler, 
+Gabriel Leventhal
 }
 %\examples{
 %#set.seed(1)

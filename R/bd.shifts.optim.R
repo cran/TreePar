@@ -1,4 +1,4 @@
-bd.shifts.optim <- function(x,sampling,grid,start,end,maxitk=5,yule=FALSE,ME=FALSE,all=FALSE,posdiv=FALSE,miniall=c(0)){
+bd.shifts.optim <- function(x,sampling,grid,start,end,maxitk=5,yule=FALSE,ME=FALSE,all=FALSE,posdiv=FALSE,miniall=c(0),survival=1,groups=0){
 	print("startest")
 	print("test")
 	x<-sort(x)	
@@ -7,7 +7,7 @@ bd.shifts.optim <- function(x,sampling,grid,start,end,maxitk=5,yule=FALSE,ME=FAL
 	convfail<-vector()
 	if (length(miniall)==1){
 		miniall<-list()
-		est0<-bd.ME.optim(x,c(0),c(sampling[1]),yule)
+		est0<-bd.ME.optim(x,c(0),c(sampling[1]),yule,survival,groups=groups)
 		if (yule==FALSE){
 		if (est0[[1]]$convergence != 0){
 			print("convergence problem")
@@ -34,7 +34,7 @@ bd.shifts.optim <- function(x,sampling,grid,start,end,maxitk=5,yule=FALSE,ME=FAL
 		miniindex<-0
 		jreal<-0
 		for (j in 0:(cuts)){
-			time1<-start + j/cuts*(end-start)
+			time1<-start + j*grid  # /cuts*(end-start)
 			if (length(which(timeshifts==time1))==0){
 			jreal<-jreal+1
 			timevec<-c(timevec,time1)
@@ -63,16 +63,18 @@ bd.shifts.optim <- function(x,sampling,grid,start,end,maxitk=5,yule=FALSE,ME=FAL
 					init<- c(inittemp[1:(dupl+1)],1)
 				}}	
 			if (ME==FALSE){
-				temp<-bd.ME.optim(x,timetemp,sampling[1:length(timetemp)],yule,maxitk,init,posdiv)}
+				temp<-bd.ME.optim(x,timetemp,sampling[1:length(timetemp)],yule,maxitk,init,posdiv,survival,groups=groups)}
 				#test<-partransformvector(c(init,timetemp[-1]))
 				#test2<-treemrca(x,test[3,],test[1,],test[2,],sampling[1:length(timetemp)])
 			else if ( all==TRUE){
-				temp<-bd.ME.optim.rho.all(x,timetemp,sampling[1],yule,maxitk,init,posdiv)
+				temp<-bd.ME.optim.rho.all(x,timetemp,sampling[1],yule,maxitk,init,posdiv,survival)
+				print("higher taxa are ignored. groups = 0")
 				#test<-partransformvectorrho(c(init,timetemp[-1]),sampling[1])
 				#test2<-treemrca(x,test[4,],test[1,],test[2,],test[3,])
 			} else {
 				print(init)
-				temp<-bd.ME.optim.rho(x,timetemp,sampling[1],yule,maxitk,init,posdiv)}
+				temp<-bd.ME.optim.rho(x,timetemp,sampling[1],yule,maxitk,init,posdiv,survival)
+				print("higher taxa are ignored. groups = 0")}
 			if (temp[[1]]$convergence != 0){
 				print("convergence problem")
 				convfail<-rbind(convfail,c(k,time1))

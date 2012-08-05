@@ -8,7 +8,7 @@ bd.shifts.optim: Estimating speciation and extinction rate changes and mass exti
 bd.shifts.optim estimates the maximum likelihood speciation and extinction rates together with the rate shift times t=(t_1,t_2 .., t_m) in a (possibly incomplete sampled) phylogeny. At the times t, the rates are allowed to change and the species may undergo a mass extinction event. 
 }
 \usage{
-bd.shifts.optim(x, sampling, grid, start, end, maxitk = 5, yule = FALSE, ME = FALSE, all = FALSE, posdiv = FALSE, miniall = c(0))
+bd.shifts.optim(x, sampling, grid, start, end, maxitk = 5, yule = FALSE, ME = FALSE, all = FALSE, posdiv = FALSE, miniall = c(0), survival = 1,groups=0)
 }
 \arguments{
   \item{x}{
@@ -37,6 +37,8 @@ posdiv=FALSE (default) allows the speciation - extinction rate to be negative, i
   \item{miniall}{
 If you run the bd.shifts.optim for k shifts, but you now want to have K>k shifts, then set for continuing the analysis: update sampling, and set miniall=res[[2]] where res[[2]] is the output from the run with k shifts.
 }
+\item{survival}{If survival = 1: The likelihood is conditioned on survival of the process (recommended). Otherwise survival = 0.}
+\item{groups}{If groups != 0: the first column of groups indicates the age of higher taxa and the second column the number of species in the higher taxa (each row in groups corresponds to a leaf in the tree).}
 }
 \value{
 \item{res[[1]][[i]]}{List of maximum likelihood parameter estimates for each fixed t where i-1 shifts are allowed to occur (i in 1:m).}
@@ -45,10 +47,12 @@ If you run the bd.shifts.optim for k shifts, but you now want to have K>k shifts
 \item{res[[4]]}{Array specifying the time points when there was a convergence problem: a row of res[[4]] with entry (i,t_i) means that when adding the i-th shift at time t_i, a convergence problem was encountered.}
 }
 \note{
-The likelihood is calculated assuming there were two lineages at the time of the root. The likelihood is NOT conditioned on survival of the two lineages. Likelihood-values from bd.densdep.optim are directly comparable (eg AIC). Likelihood-values from laser are comparable after the transformation -res+(sum(log(2:length(x)))-(length(x)-1)*log(2)).
+The likelihood is calculated assuming there were two lineages at the time of the root. The likelihood is conditioned on survival of the two lineages if survival = 1. Likelihood-values from bd.densdep.optim are directly comparable (eg AIC) for survival = 0. Likelihood-values from laser are comparable for survival = 0 after the transformation -res+(sum(log(2:length(x)))-(length(x)-1)*log(2)).
 }
 \references{
 T. Stadler: Mammalian phylogeny reveals recent diversification rate shifts. PNAS 108 (15), 6187-6192, 2011.
+T. Stadler & F. Bokma: Estimating speciation and extinction rates for phylogenies of higher taxa. Submitted, 2012. (for groups>0 but no rate shift)
+A. Lambert & T. Stadler: Coalescent point processes and phylogenies. Manuscript. (for groups>0)
 }
 \author{
 Tanja Stadler 
@@ -77,15 +81,29 @@ start <- 0.6
 end <- 2.4
 grid <- 0.2
 
-# We estimate time, rho, lambda, mu:
-resrho <- bd.shifts.optim(x,rho,grid,start,end,ME=TRUE)
-resrho[[2]]
 # We fix rho and estimate time, lambda, mu:
 res <- bd.shifts.optim(x,rho,grid,start,end)
 res[[2]]
 # We fix rho=1 and mu=0 and then estimate time, lambda:
 resyule <- bd.shifts.optim(x,rho,grid,start,end,yule=TRUE)
 resyule[[2]]
+# We estimate time, rho, lambda, mu:
+resrho <- bd.shifts.optim(x,rho,grid,start,end,ME=TRUE)
+resrho[[2]]
+
+# Data analysis in Stadler & Bokma, 2012:
+# Number of species in each order from Sibley and Monroe (1990)
+data(bird.orders)
+S <- c(10, 47, 69, 214, 161, 17, 355, 51, 56, 10, 39, 152,6, 143, 358, 103, 319, 23, 291, 313, 196, 1027, 5712)
+
+groups<-get.groups(bird.orders,S,0)
+groupscut<-get.groups(bird.orders,S,96.43*0.207407)
+x<-branching.times(bird.orders)
+bd.shifts.optim(x,sampling=c(1),survival=1,groups=groups)[[2]]
+bd.shifts.optim(x,sampling=c(1),survival=1,groups=groupscut)[[2]]
+
+# allowing one shift in rates:
+bd.shifts.optim(x,sampling=c(1,1),grid=1,start=20,end=25,survival=1,groups=groupscut)[[2]]
 }
 %\keyword{diversification rates}
 %\keyword{rate shifts}

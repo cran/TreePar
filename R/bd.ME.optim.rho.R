@@ -1,5 +1,5 @@
 bd.ME.optim.rho <-
-function (x,t,sampling,yule = FALSE,maxitk=5,init=c(-1),posdiv=FALSE)  {
+function (x,t,sampling,yule = FALSE,maxitk=5,init=c(-1),posdiv=FALSE,survival=1)  {
 	if (yule==TRUE) {
 		print("not implemented. ext>0 !")
 		} else {
@@ -8,7 +8,7 @@ function (x,t,sampling,yule = FALSE,maxitk=5,init=c(-1),posdiv=FALSE)  {
     	rho<-c(sampling,p[3:length(p)])
     	l<-(1:length(rho))*0+ (p[2]/(1-p[1]))
     	mu<-(1:length(rho))*0+  (p[1] * p[2]/(1-p[1]))
-      	out<- treemrcashifts(x,t,l,mu,rho,posdiv)
+      	out<- treemrcashifts(x,t,l,mu,rho,posdiv,survival)
         out
     }
     numb<-length(t)

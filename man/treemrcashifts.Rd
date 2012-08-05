@@ -7,7 +7,7 @@ treemrcashifts: calculates the likelihood of a tree}
 treemrcashifts: calculates the likelihood of a tree given the speciation and extinction rates and shift times.
 }
 \usage{
-treemrcashifts(x, t, l, mu, sampling, posdiv=FALSE)
+treemrcashifts(x, t, l, mu, sampling, posdiv=FALSE,survival=1,groups=0)
 }
 \arguments{
   \item{x}{
@@ -21,9 +21,11 @@ Vector of length m. sampling_i is the probability of a species surviving the mas
   \item{posdiv}{
 Not relevant when using treemrcashifts without optimizing (for bd.shifts.optim: posdiv=FALSE (default) allows the speciation - extinction rate to be negative, i.e. allows for periods of declining diversity. posdiv=TRUE forces the speciation - extinction rate to be positive).
 }
+\item{survival}{If survival = 1: The likelihood is conditioned on survival of the process (recommended). Otherwise survival = 0.}
+\item{groups}{If groups != 0: the first column of groups indicates the age of higher taxa and the second column the number of species in the higher taxa (each row in groups corresponds to a leaf in the tree).}
 }
 \value{
-\item{res}{-log likelihood of the tree given the parameters. The likelihood is calculated assuming there were two lineages at the time of the root. The likelihood is NOT conditioned on survival of the two lineages. Likelihood-values from bd.densdep.optim are directly comparable (eg AIC). Likelihood-values from laser are comparable after the transformation -res+(sum(log(2:length(x)))-(length(x)-1)*log(2)).}
+\item{res}{-log likelihood of the tree given the parameters. The likelihood is calculated assuming there were two lineages at the time of the root. The likelihood is conditioned on survival of the two lineages if survival = 1. Likelihood-values from bd.densdep.optim are directly comparable (eg AIC) for survival = 0. Likelihood-values from laser are comparable for survival = 0 and after the transformation -res+(sum(log(2:length(x)))-(length(x)-1)*log(2)).}
 }
 \references{
 T. Stadler: Mammalian phylogeny reveals recent diversification rate shifts. PNAS 108 (15), 6187-6192, 2011.
