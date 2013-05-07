@@ -8,7 +8,8 @@ bd.densdep.optim: Estimating speciation and extinction rates in phylogenies unde
 bd.densdep.optim estimates the maximum likelihood speciation and extinction rates under a density-dependent speciation model. Speciation rate is a function of the number of species N, lambda(N) = max(0,lambda(1-N/K)), and extinction rate is mu (constant).
 }
 \usage{
-bd.densdep.optim(x,minK,maxK,discrete=TRUE,continuous=FALSE,lambdainit=2,muinit=1,Kinit=0,Yule=FALSE,muset=0,rho=1,model=-1, survival = 0)
+bd.densdep.optim(x,minK,maxK,discrete=TRUE,continuous=FALSE,lambdainit=2,
+muinit=1,Kinit=0,Yule=FALSE,muset=0,rho=1,model=-1, survival = 0)
 }
 \arguments{
   \item{x}{

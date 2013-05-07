@@ -13,7 +13,7 @@ bd.shifts.plot<-function(resall,shifts,timemax=100,ratemin=-1,ratemax=1,plotturn
 		estimates<-estimates[-1]
 		if (rates>1){
 			time<-estimates[(length(estimates)-rates+2):length(estimates)]
-			time<-sort(c(time,time,0,90))
+			time<-sort(c(time,time,0,timemax))
 			turnover<-estimates[1]
 			div<-estimates[rates+1]
 			for (j in 1:(rates-1)){turnover<-c(turnover,estimates[j:(j+1)])

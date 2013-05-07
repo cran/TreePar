@@ -26,7 +26,7 @@ If constdeath=0 (default) then k death rates are estimated. If constdeath=1, the
 root=0 indicates that there is an edge above the root (mrca) in the tree. root=1 indicates that there is no edge above the root.}
 }
 \value{
-\item{out[[1]]}{Entry [[j]] are the maximum likelihood parameter estimates for j-1 shifts}
+\item{out[[1]]}{Entry [[j]] are the maximum likelihood parameter estimates for j-1 shifts. First value is -log lik, then the turnover estimates (recent to ancient), then the diversification rate estimates (recent to ancient), then the shift times.}
 \item{out[[2]]}{Matrix where in each row, first entry denotes the type of convergence problem, second entry denotes assuming the number of shifts in the problematic caluclation, third entry denotes in which interval it happened.}
 }
 \note{
@@ -51,7 +51,10 @@ tree<- sim.bdsky.stt(n,lambda,mu,time,sampprob)
 summary<-getx(tree,sersampling=TRUE)
 times<-summary[,1]
 ttype<-summary[,2]
+
+\donttest{
 out <- bdsky.stt.optim(x=times,ttype=ttype,sampprob=sampprob)
+}
 }
 %\keyword{diversification rates}
 %\keyword{rate shifts}

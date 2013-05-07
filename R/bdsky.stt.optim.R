@@ -19,7 +19,7 @@ bdsky.stt.optim <- function(x,ttype=0,rho=0,sampprob=c(0),constdeath=0,root=0) {
 	mininterval<-vector()
 	if (shifts>1) {for (i in 2:shifts){		
 		timesall<-vector()
-		timessort<-sort(times)
+		timessort<-sort(unique(times))
 		intervals<-length(timessort)-1
 		for (k in 2:intervals){
 			if ((length(which(mininterval==k)))==0) {
@@ -55,10 +55,10 @@ bdsky.stt.optim <- function(x,ttype=0,rho=0,sampprob=c(0),constdeath=0,root=0) {
 		mutemp<-resmin$par[(i+1):(length(resmin$par)-1)]
 		#print(ltemp)
 		#print(mutemp)
+		mininterval<-c(mininterval,tempmin)
 		timetemp<-resmin$par[length(resmin$par)]
 		tempmin<-c(resmin$value,mutemp/ltemp,ltemp-mutemp,sort(c(initt,timetemp)))
 		resminall<-c(resminall,list(tempmin))
-		mininterval<-c(mininterval,tempmin)
 		print("resmin")
 		print(resmin)
 		initrates<-resmin$par[1:((length(resmin$par)-1))]

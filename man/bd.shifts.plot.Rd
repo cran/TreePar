@@ -40,7 +40,8 @@ set.seed(1)
 nspecies <- 20
 # At time 1 and 2 in the past, we have a rate shift:
 time <- c(0,1,2)
-# Mass extinction intensities 0.5 at time 1 in past, 0.4 at time 2 in past. Present day species are all sampled (rho_1=1):
+# Mass extinction intensities 0.5 at time 1 in past, 0.4 at time 2 in past. 
+# Present day species are all sampled (rho_1=1):
 rho <- c(1,0.5,0.4)
 # speciation rates (between t_i,t_{i+1} we have speciation rate lambda_i):
 lambda <- c(2,2,1)
@@ -56,9 +57,11 @@ start <- 0.6
 end <- 2.4
 grid <- 0.2
 
+\donttest{
 # We fix rho and estimate time, lambda, mu:
 res <- bd.shifts.optim(x,rho,grid,start,end)
 res[[2]]
 # We plot the result for 2 shifts:
 bd.shifts.plot(list(res[[2]]),2,3,0,2)
+}
 }

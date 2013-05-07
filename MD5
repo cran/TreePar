@@ -1,4 +1,4 @@
-399bcc945d6625cbf2e73bd13d054a6d *DESCRIPTION
+d89dd3b2583c226a76da33d07cdc79c8 *DESCRIPTION
 9823306ff535d3e5a0bd1df610b8ab38 *NAMESPACE
 05ea45a7ed3aece3938e2eb2eb17f8d0 *R/BDSSanal.R
 61e9c896890e3d495ab7f5ae992b1270 *R/BDSSnum.help.R
@@ -17,8 +17,8 @@ c198c084ec88d5a6e4716bfcab2fb456 *R/bd.ME.optim.rho.all.R
 40d08300db5be17b1db7a247a9c6023e *R/bd.groups.conf.R
 fc843d5949781281e4222618a11588a8 *R/bd.groups.optim.R
 e10579eb060d9f89dfa95d13d4cffa85 *R/bd.shifts.optim.R
-5df662779ad15243e50e184b6523e19c *R/bd.shifts.plot.R
-ffcf4592ee87bbf8053c15386b9dd9a9 *R/bdsky.stt.optim.R
+570f9221d26cdceb6e6277fa50946e9b *R/bd.shifts.plot.R
+c7e89e2ed7f6970bbd25502de51840a2 *R/bdsky.stt.optim.R
 90e8581b0eacf4be2038091b547897ab *R/bdtypes.stt.lik.R
 95b66e3f23b3043152f96b297d79f0bf *R/bi.R
 e00f972cb2ecfbbae4da3c87ef15f32a *R/const.R
@@ -41,11 +41,11 @@ f690c02896467e27c5678d9fd772a325 *R/partransformvector.R
 f05117ec28579c2b133be02df5d250f1 *R/qfuncskylog.R
 119afc1230249778e830c1604c5c9562 *R/treemrcabdtreepar.R
 22dc3f1b9cf1cde69be385c81f5f5f38 *R/treemrcashifts.R
-9f0b7d61731b42773941e19dc3410578 *man/TreePar-package.Rd
-10a3014db5e5898eb34896831eb9123a *man/bd.densdep.optim.Rd
-4b9ee98a37cec30f462c3eedc668b65c *man/bd.shifts.optim.Rd
-f7e6f193387eef0bed6136cc83092d5b *man/bd.shifts.plot.Rd
-1b5eff37d09147fd2693a7b531935b02 *man/bdsky.stt.optim.Rd
-2ccdd240d30a711a10e28be356946954 *man/bdtypes.stt.lik.Rd
+4811faee7052774f7fd066da636b09cd *man/TreePar-package.Rd
+866532681ab1e53466f86be93bad2f9a *man/bd.densdep.optim.Rd
+461303ea4292df9dc2bdb6a95b36bf12 *man/bd.shifts.optim.Rd
+d667246a3464b40917fd4edf60822224 *man/bd.shifts.plot.Rd
+78951d45aa6c81d6afaadbbe106b80d5 *man/bdsky.stt.optim.Rd
+04e10c5a5f24aee6dceedfbed2f3b32a *man/bdtypes.stt.lik.Rd
 5aa58de1f2ae973c1065237e605183db *man/get.groups.Rd
 c05a170ec1d4c5dcb1075f0a9674de98 *man/treemrcashifts.Rd

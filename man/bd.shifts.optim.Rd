@@ -8,7 +8,8 @@ bd.shifts.optim: Estimating speciation and extinction rate changes and mass exti
 bd.shifts.optim estimates the maximum likelihood speciation and extinction rates together with the rate shift times t=(t_1,t_2 .., t_m) in a (possibly incomplete sampled) phylogeny. At the times t, the rates are allowed to change and the species may undergo a mass extinction event. 
 }
 \usage{
-bd.shifts.optim(x, sampling, grid, start, end, maxitk = 5, yule = FALSE, ME = FALSE, all = FALSE, posdiv = FALSE, miniall = c(0), survival = 1,groups=0)
+bd.shifts.optim(x, sampling, grid, start, end, maxitk = 5, yule = FALSE, ME = FALSE, 
+all = FALSE, posdiv = FALSE, miniall = c(0), survival = 1,groups=0)
 }
 \arguments{
   \item{x}{
@@ -65,7 +66,8 @@ set.seed(1)
 nspecies <- 20
 # At time 1 and 2 in the past, we have a rate shift:
 time <- c(0,1,2)
-# Mass extinction intensities 0.5 at time 1 in past, 0.4 at time 2 in past. Present day species are all sampled (rho_1=1):
+# Mass extinction intensities 0.5 at time 1 in past, 0.4 at time 2 in past. 
+# Present day species are all sampled (rho_1=1):
 rho <- c(1,0.5,0.4)
 # speciation rates (between t_i,t_{i+1} we have speciation rate lambda_i):
 lambda <- c(2,2,1)
@@ -81,6 +83,7 @@ start <- 0.6
 end <- 2.4
 grid <- 0.2
 
+\donttest{
 # We fix rho and estimate time, lambda, mu:
 res <- bd.shifts.optim(x,rho,grid,start,end)
 res[[2]]
@@ -90,20 +93,22 @@ resyule[[2]]
 # We estimate time, rho, lambda, mu:
 resrho <- bd.shifts.optim(x,rho,grid,start,end,ME=TRUE)
 resrho[[2]]
-
 # Data analysis in Stadler & Bokma, 2012:
 # Number of species in each order from Sibley and Monroe (1990)
 data(bird.orders)
-S <- c(10, 47, 69, 214, 161, 17, 355, 51, 56, 10, 39, 152,6, 143, 358, 103, 319, 23, 291, 313, 196, 1027, 5712)
-
+S <- c(10, 47, 69, 214, 161, 17, 355, 51, 56, 10, 39, 152, 6, 143, 
+358, 103, 319, 23, 291, 313, 196, 1027, 5712)
 groups<-get.groups(bird.orders,S,0)
-groupscut<-get.groups(bird.orders,S,96.43*0.207407)
+groupscut<-get.groups(bird.orders,S,96.43)
 x<-branching.times(bird.orders)
+# transforming molecular timescale into calendar timescale
+groups[,1]<-groups[,1]/0.207407
+x<-x/0.207407 
 bd.shifts.optim(x,sampling=c(1),survival=1,groups=groups)[[2]]
 bd.shifts.optim(x,sampling=c(1),survival=1,groups=groupscut)[[2]]
-
 # allowing one shift in rates:
 bd.shifts.optim(x,sampling=c(1,1),grid=1,start=20,end=25,survival=1,groups=groupscut)[[2]]
+}
 }
 %\keyword{diversification rates}
 %\keyword{rate shifts}

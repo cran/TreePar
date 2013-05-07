@@ -7,7 +7,8 @@ bdtypes.stt.lik: calculates the likelihood of a tree under a 2-type birth-death 
 bdtypes.stt.lik: calculates the likelihood of a tree under a 2-type birth-death model. For obtaining the maximum likelihood parameter estimates use the R function optim (see example below).
 }
 \usage{
-bdtypes.stt.lik(par,phylo,fix=rbind(c(0,0),c(0,0)),sampfrac,survival=0,posR=0,unknownStates=FALSE,root=0)
+bdtypes.stt.lik(par,phylo,fix=rbind(c(0,0),c(0,0)),sampfrac,
+survival=0,posR=0,unknownStates=FALSE,root=0)
 }
 \arguments{
   \item{par}{
@@ -55,8 +56,12 @@ init<- -1
 
 tree<-sim.bdtypes.stt.taxa(n,l,d,s,init)
 
-#Calculate likelihood for lambda11=15,lambda12=lambda21=lambda22=mu1=mu2=2,gamma=0
-bdtypes.stt.lik(par=c(2,2,2,2),phylo=tree,fix=rbind(c(1,6,7,8),c(15,-5,0,0),c(1,1,1,1)),sampfrac=s,survival=0,posR=0)
-#Calculate maximum likelihood parameter estimates of lambda12,lambda21,lambda22,mu1 constraining lambda11=15,mu2=mu1 and gamma=0.
-out<-try(optim(c(2,2,2,2),bdtypes.stt.lik,phylo=tree,fix=rbind(c(1,6,7,8),c(15,-5,0,0),c(1,1,1,1)),sampfrac=s,survival=0,posR=0,control=list(maxit=10000)))
-}
+\donttest{
+# Calculate likelihood for lambda11=15,lambda12=lambda21=lambda22=mu1=mu2=2,gamma=0
+bdtypes.stt.lik(par=c(2,2,2,2),phylo=tree,
+fix=rbind(c(1,6,7,8),c(15,-5,0,0),c(1,1,1,1)),sampfrac=s,survival=0,posR=0)
+# Calculate maximum likelihood parameter estimates of lambda12,lambda21,
+# lambda22,mu1 constraining lambda11=15,mu2=mu1 and gamma=0.
+out<-try(optim(c(2,2,2,2),bdtypes.stt.lik,phylo=tree,fix=rbind(c(1,6,7,8),c(15,-5,0,0),c(1,1,1,1)),
+sampfrac=s,survival=0,posR=0,control=list(maxit=10000)))
+}}
