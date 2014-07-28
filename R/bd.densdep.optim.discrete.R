@@ -3,7 +3,7 @@ minlik<-10^100
 for (k in minN:maxN){
 	init<-c(2,1)
 	if (muset<0) {init<-c(2)}
-	res<-subplex(init,LikComp2,model=model,root=1,x=x,Ndec=k,minN=minN,muset=muset,rho=rho)
+	res<-subplex(init,LikDD,model=model,root=1,x=x,Ndec=k,minN=minN,muset=muset,sampling=rho)
 	print(k)
 	print(res)
 	if (res$value<minlik){

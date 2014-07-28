@@ -1,6 +1,2 @@
-
-export(bd.shifts.optim,bd.densdep.optim,treemrcashifts,bd.shifts.plot,bdtypes.stt.lik,bdsky.stt.optim,get.groups)
-
-import(ape, TreeSim)
-
-
+export(bd.shifts.optim,bd.densdep.optim,LikShifts, LikConstant, LikConstantn,LikShiftsPP,bd.shifts.plot,LikTypesSTT,LikShiftsSTT,LikDD,bdsky.stt.optim,get.groups,addroot)
+import(ape, TreeSim, Matrix, deSolve, subplex)

@@ -15,6 +15,8 @@ bdsky.stt.optim <- function(x,ttype=0,rho=0,sampprob=c(0),constdeath=0,root=0) {
 	initrates<-restemp$par
 	initt<-vector()
 	likmin<-restemp$value
+	#resmin<-restemp  #Tanja added July 16 2014
+	#tempmin<-1		#Tanja added July 16 2014
 	resminall<-c(resminall,list(c(restemp$value,restemp$par[2]/restemp$par[1],restemp$par[1]-restemp$par[2])))
 	mininterval<-vector()
 	if (shifts>1) {for (i in 2:shifts){		
@@ -31,10 +33,7 @@ bdsky.stt.optim <- function(x,ttype=0,rho=0,sampprob=c(0),constdeath=0,root=0) {
 				if (numbd==0){
 					init<-c(initrates[1:repl],initrates[repl:(repl+length(initrates)/2)],initrates[(repl+length(initrates)/2):length(initrates)])} else { 
 					init<-c(initrates[1:repl],initrates[repl:length(initrates)])} 
-				#print("init")
-				#print(init)
-				#out<-BDSSsky(c(init,inittime),times=times,ttype=ttype,numbd=numbd,rho=rho,sprob=sprob[1:i],tfixed=initt,mint=start,maxt=end,root=root)
-				restemp <- try(optim(c(init,inittime),BDSSsky,times=times,ttype=ttype,numbd=numbd,rho=rho,sprob=sprob[1:i],tfixed=initt,mint=start,maxt=end,root=root,control=list(maxit=10000),method="BFGS"))
+				restemp <- try(optim(c(init,inittime), LikShiftsSTT,times=times,ttype=ttype,numbd=numbd,sampling=rho,sprob=sprob[1:i],tfixed=initt,mint=start,maxt=end,root=root,control=list(maxit=10000),method="BFGS"))
 				
 				#method="BFGS",control=list(maxit=100000,reltol=10^(-15),abstol=10^(-15))))#,method="BFGS"))
 				                   #,method="SANN")				#,control=list(tmax=50,temp=50,maxit=50000))

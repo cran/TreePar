@@ -21,6 +21,7 @@ BDSSanal <- function(par,times,ttype,rho=0,sprob,root=0,survival=1,maxpar=1000){
 		if (length(sampling)>0){   
 			for (i in 1:length(sampling)){
 				lik<- lik+log(psi*qfunc(sampling[i],l,m,psi,rho))}}}
+	lik <- lik - (length(transmission)-1-root)*log(2)
 	-lik
 }
 

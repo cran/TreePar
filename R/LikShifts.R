@@ -1,5 +1,6 @@
-treemrcashifts <-
-function(x,t,l,mu,sampling,posdiv=FALSE,survival=1,groups=0) {
+LikShifts <-
+function(x,t,lambda,mu,sampling,posdiv=FALSE,survival=1,groups=0) {
+	l<-lambda
 	res<- -10^12
 	boundary<-0
 	for (i in 1:length(l)){
@@ -32,7 +33,7 @@ function(x,t,l,mu,sampling,posdiv=FALSE,survival=1,groups=0) {
 		res <- res + log(pnshift(size,age,t,l,mu))-log(pnshift(1,age,t,l,mu))
 		}	
 	}
-	
+	res<-res-(length(x)-1)*log(2)
 	}
 	-res
 	}

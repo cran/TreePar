@@ -1,5 +1,5 @@
 bd.ME.optim <-
-function (x,t,rho,yule = FALSE,maxitk=5,init=c(-1),posdiv=FALSE,survival=1,groups=0)  {
+function (x,t,rho,yule,maxitk=5,init=c(-1),posdiv=FALSE,survival=1,groups=0)  {
 	if (yule==TRUE) {
 		res<-bd.MEyule.optim(x,t,rho,groups)
 		} else {
@@ -15,7 +15,7 @@ function (x,t,rho,yule = FALSE,maxitk=5,init=c(-1),posdiv=FALSE,survival=1,group
 			l<-c(l, ltemp)
     		mu<- c(mu,mutemp)
     	}
-      	out<- treemrcashifts(x,t,l,mu,rho,posdiv,survival,groups) 
+      	out<- LikShifts(x,t,l,mu,rho,posdiv,survival,groups) 
         out
     }
     numb<-length(rho)

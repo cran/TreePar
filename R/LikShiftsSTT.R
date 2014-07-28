@@ -1,7 +1,9 @@
 #numbd: either as many as birth rates (default:numbd=0); or just numbd=1.
 #if tconst vector: fixed shift times; if -1 not fixed
 #sprob: probability of sampling an extinct individual
-BDSSsky <- function(par,times,ttype,numbd=0,tconst=-1,rho=0,sprob,root=0,survival=1,tfixed=vector(),mint=0,maxt=0) {
+LikShiftsSTT <- function(par,times,ttype,numbd=0,tconst=-1,sampling=0,sprob,root=0,survival=1,tfixed=vector(),mint=0,maxt=0) {
+	if (root == 0 && sum(ttype)*2 != length(ttype)) {print("Invalid input. Most likely you did not add a root edge to your tree using addroot().")} else {
+	rho<-sampling	
 	if (length(ttype)==1 && ttype==0){ttype<-times*0+1}
 	shifts<-length(sprob)
 	if (maxt==0) {maxt<-max(times)}	
@@ -46,7 +48,6 @@ BDSSsky <- function(par,times,ttype,numbd=0,tconst=-1,rho=0,sprob,root=0,surviva
 			if (par[length(par)]<=mint || par[length(par)]>=maxt)  boundary<-1
 	}		
 
-	# actual likelihood calculation! as in previous BDSSsky	
 	if (boundary==0) {
 		out<- -(root+1)*log(2*l[interstt(max(transmission),t)])
 		if (survival==1){
@@ -94,5 +95,7 @@ BDSSsky <- function(par,times,ttype,numbd=0,tconst=-1,rho=0,sprob,root=0,surviva
 
 		}			
 	}
+	out<- out-(length(transmission)-1-root)*log(2)
 	-out
+	}
 }

@@ -2,7 +2,7 @@ bd.MEyule.optim <-
 function (x,t,rho,maxitk=5,init=c(-1),groups=0)  {
 	x<-sort(x)
     dev <- function(p) {
-        out<- treemrcashifts(x,t,p,p*0,rho,groups)
+        out<- LikShifts(x,t,p,p*0,rho,groups)
         out
     }
     numb<-length(rho)
