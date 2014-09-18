@@ -2,7 +2,7 @@
 #par must be  lambda11 lambda12 lambda21 lambda22 death1 death2 gamma12 gamma21
 #states[i] belongs to leaf i
 #neg value -m in fix mean we equal to the parameter m times the entry in thrid row
-LikTypesSTT <- function(par,phylo,fix=rbind(c(0,0),c(0,0)),sampfrac,survival=0,posR=0,unknownStates=FALSE,rtol=1e-12,atol=1e-12,migr=0,freq=0){  
+LikTypesSTT <- function(par,phylo,fix=rbind(c(0,0),c(0,0)),sampfrac,survival=0,posR=0,unknownStates=FALSE,rtol=1e-12,atol=1e-12,migr=0,freq=0,cutoff=10^12){  
 	root<-0 #root =1 not tested
 	prpar<-FALSE
 	maxpar<-100
@@ -50,7 +50,7 @@ LikTypesSTT <- function(par,phylo,fix=rbind(c(0,0),c(0,0)),sampfrac,survival=0,p
 	if (posR==1 && class(R0temp)=="try-error") {temp<-0}
 	check<-((length(which(partemp=="NaN"))>0)||(min(l,psi))<0 || m<0  || max(l,m,psi)>maxpar || (temp==0))  #19.4.12: (min(l,psi))<=0
 	if (check){out <-  10^10} else {   
-		lik<-try(BDSSnum.help(phylo,1,l,m,psi,summary,unknownStates,rtol,atol,migr))
+		lik<-try(BDSSnum.help(phylo,1,l,m,psi,summary,unknownStates,rtol,atol,migr,cutoff))
 	##	print("lik")
 	##print(lik)
 		if (class(lik)!="try-error"){

@@ -17,6 +17,11 @@ integrator2<-function(init,l,m,psi,times,rtol,atol,migr){
 		yd1<-mu1-(lambda11+lambda12+mu1+psi1)*y[1]+lambda11*y[1]*y[1]+lambda12*y[2]
 		yd2<-mu2-(lambda21+lambda22+mu2+psi2)*y[2]+lambda21*y[1]+lambda22*y[2]*y[2]
 		}
+		#3.4.14
+		if (migr==2) {  #SEIR 1 is E, 2 is I
+		yd1<- mu1-(lambda12)*y[1]+lambda12*y[2]
+		yd2<- mu2-(lambda21+mu2+psi2)*y[2]+lambda21*y[1]*y[2]
+		}
 		list(c(yd1,yd2))
 	}
 	p<-c(l,m,psi)

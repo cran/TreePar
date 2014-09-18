@@ -1,8 +1,8 @@
-84dc2de0bb74c9f0d47aaf3501599ba3 *DESCRIPTION
+43464f633b424cd0cb41fbea6e7799de *DESCRIPTION
 22152c6beac361764ee9ddbb9c0a8066 *NAMESPACE
 50498584cd5c6f19c1ab3b4804b70713 *R/BDSSanal.R
 39d60d9d8cf3ec7f0eb7116e0f00e867 *R/BDSSnum.help-orig.R
-0cfd7e6db1f580c02ef9fa8996c1ed80 *R/BDSSnum.help.R
+cbcbc30d4c659e92918c22f847948555 *R/BDSSnum.help.R
 feced5d413778a816a5967531da699e4 *R/Fderifuncshift.R
 f0612fd622ccc909b7d73512feb9021a *R/Fderifuncshifth.R
 a038fa271f60a5b8c734313b10784781 *R/Ffuncshift.R
@@ -14,7 +14,7 @@ eac74517cf2393590d3a00b37bbdf8cc *R/LikDD.R
 45c84ff3d7cf182507ccfff252764dca *R/LikShifts.R
 2dd0faf88e1fa3f823565d2bd414a305 *R/LikShiftsPP.R
 1d2761cc1308c62545764ac622eb86f1 *R/LikShiftsSTT.R
-824c9c27e2c999ea7537ab4a369e24ad *R/LikTypesSTT.R
+2551a5396de1504fa6be670cbfae9707 *R/LikTypesSTT.R
 5f8df56350b70630abfab3d547a8b371 *R/R0types.R
 d8757b8960b6b820b4c89da5bdef2302 *R/addroot.R
 29794fdb63020a45cfc76a57ac88a0e9 *R/ai.R
@@ -37,9 +37,9 @@ e00f972cb2ecfbbae4da3c87ef15f32a *R/const.R
 a88b50319067121ec3c29213422e7918 *R/get.times2.R
 79c1b19240d25b06efc9fb38732f0014 *R/getmatrix.R
 4fdc7a1820c957483d183825991d12ec *R/integrator-orig.R
-1df4d453277272732da84d8e52ae24da *R/integrator.R
+bf7653a1fdf53238694bd3de23276e91 *R/integrator.R
 53c2b570386445090929ca77979bdfff *R/integrator2-orig.R
-d03111aefddb97985e8e262cad7850ae *R/integrator2.R
+7f655f0cc95ead7ba1900e67dca8b405 *R/integrator2.R
 bfbd405cfef20334e1a034b93657a0bd *R/inter.R
 1d01b59e67ca2814f0a77d80150a4f15 *R/interstt.R
 1c240569aeb9adab15d0956e69d7d7ab *R/lambFun.R
@@ -62,8 +62,8 @@ acea191d6e3e3d30eaf547120667f14f *man/LikConstant.Rd
 733cbeb2dbcb83c12d3a7977639713a8 *man/LikShifts.Rd
 572dea3ac59af90f3a47ec7dd6d58b41 *man/LikShiftsPP.Rd
 91cf0d41e66225d2de099c2f127a69f6 *man/LikShiftsSTT.Rd
-b459ea293c006423b35c2ef31b709942 *man/LikTypesSTT.Rd
-519843b2de51f91694d6c946f95f69f8 *man/TreePar-package.Rd
+575ec8df64b62652e29d7302d238efd1 *man/LikTypesSTT.Rd
+0160fd6b9549beb07b1ee94d3ea6518b *man/TreePar-package.Rd
 78033aa2b0abfbfb24d4330729703604 *man/addroot.Rd
 899c77e3a8e49a3aca91f59116e7e0ce *man/bd.densdep.optim.Rd
 34eca6655c7d5109608f8e6aad96e39a *man/bd.shifts.optim.Rd

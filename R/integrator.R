@@ -22,6 +22,15 @@ integrator<-function(init,l,m,psi,times,rtol,atol,migr){
 		yd4<- -(lambda22+lambda21+mu2+psi2)*y[4] + 2*lambda22*y[2]*y[4] + lambda21*y[3]
 		}
 		
+		#3.4.14
+		if (migr==2) {  #SEIR 1 is E, 2 is I
+		yd1<- mu1-(lambda12)*y[1]+lambda12*y[2]
+		yd2<- mu2-(lambda21+mu2+psi2)*y[2]+lambda21*y[1]*y[2]
+		yd3<- -(lambda12)*y[3] + lambda12*y[4]
+		yd4<- -(lambda21+mu2+psi2)*y[4] + lambda21*y[1]*y[4]+lambda21*y[2]*y[3]
+		}
+
+		
 		list(c(yd1,yd2,yd3,yd4))
 	}
 	out<-lsoda(init,times,ode,c(l,m,psi),rtol=rtol,atol=atol)[2,2:5]
