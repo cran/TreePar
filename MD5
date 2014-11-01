@@ -1,5 +1,5 @@
-43464f633b424cd0cb41fbea6e7799de *DESCRIPTION
-22152c6beac361764ee9ddbb9c0a8066 *NAMESPACE
+6e31a7d079216a08ee69e2c772191338 *DESCRIPTION
+a49d99d47a6be7c3140975baae282f4e *NAMESPACE
 50498584cd5c6f19c1ab3b4804b70713 *R/BDSSanal.R
 39d60d9d8cf3ec7f0eb7116e0f00e867 *R/BDSSnum.help-orig.R
 cbcbc30d4c659e92918c22f847948555 *R/BDSSnum.help.R
@@ -8,8 +8,9 @@ f0612fd622ccc909b7d73512feb9021a *R/Fderifuncshifth.R
 a038fa271f60a5b8c734313b10784781 *R/Ffuncshift.R
 40563b01e83642d0bb0c685d4d0f17dc *R/Ffuncshifth.R
 8f1020dd75664c945f0e27d99160a267 *R/HelpShiftsPPn.R
-51a63ea2facef98a84d0d34d37afa978 *R/LikConstant.R
-c4991f1e6a14b161731d0dc574c17e26 *R/LikConstantn.R
+e3f8c5241090a038226097aa2cdb9071 *R/LikAge.R
+65fb9fed44843bb9cf652318f6801f68 *R/LikConstant.R
+0c5f2342084e9c109010e526d1934431 *R/LikConstantn.R
 eac74517cf2393590d3a00b37bbdf8cc *R/LikDD.R
 45c84ff3d7cf182507ccfff252764dca *R/LikShifts.R
 2dd0faf88e1fa3f823565d2bd414a305 *R/LikShiftsPP.R
@@ -22,6 +23,7 @@ d8757b8960b6b820b4c89da5bdef2302 *R/addroot.R
 2466f87e2f80b3624586d29981fec2fe *R/bd.ME.optim.rho.R
 822543e55da71c80f8e7b89c028e91e6 *R/bd.ME.optim.rho.all.R
 a6504bf4f3b875b5effded4b99ea345f *R/bd.MEyule.optim.R
+b408c238f8512a03fe05d3698b0ff525 *R/bd.age.optim.matlab.R
 38767cc47b349799ef677d778c7b2378 *R/bd.densdep.optim.R
 576f2bb787755a98a852de00a185eda3 *R/bd.densdep.optim.discrete.R
 40d08300db5be17b1db7a247a9c6023e *R/bd.groups.conf.R
@@ -32,6 +34,7 @@ fc843d5949781281e4222618a11588a8 *R/bd.groups.optim.R
 798add1d3c19799686e7d4e393c96793 *R/bdtypes.stt.lik.orig.R
 95b66e3f23b3043152f96b297d79f0bf *R/bi.R
 e00f972cb2ecfbbae4da3c87ef15f32a *R/const.R
+4741141b75b7dc00f16f54b2da225315 *R/create.mat.R
 5bc053dc8af2d876d0fa4015eb6580d9 *R/g.R
 9c705516242e55683ab1aabe3a763ed9 *R/get.groups.R
 a88b50319067121ec3c29213422e7918 *R/get.times2.R
@@ -56,6 +59,7 @@ b9fc2760e78d02436f57942c646cddc2 *R/pnshift.R
 f05117ec28579c2b133be02df5d250f1 *R/qfuncskylog.R
 829c3912ef2687ca0cc0e1b5f8b5f2c9 *R/qhelp.R
 119afc1230249778e830c1604c5c9562 *R/treemrcabdtreepar.R
+a7def7995d9f10dc41c9d517b833d9c9 *man/LikAge.Rd
 acea191d6e3e3d30eaf547120667f14f *man/LikConstant.Rd
 7414d87c56a888a728c6fa2ff969103b *man/LikConstantn.Rd
 8ff8566ce2f962b47da76f0ee660bd62 *man/LikDD.Rd
@@ -63,10 +67,12 @@ acea191d6e3e3d30eaf547120667f14f *man/LikConstant.Rd
 572dea3ac59af90f3a47ec7dd6d58b41 *man/LikShiftsPP.Rd
 91cf0d41e66225d2de099c2f127a69f6 *man/LikShiftsSTT.Rd
 575ec8df64b62652e29d7302d238efd1 *man/LikTypesSTT.Rd
-0160fd6b9549beb07b1ee94d3ea6518b *man/TreePar-package.Rd
+d650092c39de3f225ecd7747d3474d03 *man/TreePar-package.Rd
 78033aa2b0abfbfb24d4330729703604 *man/addroot.Rd
+fb7d1f7c6f9e4942015dff7fde933b3e *man/bd.age.optim.matlab.Rd
 899c77e3a8e49a3aca91f59116e7e0ce *man/bd.densdep.optim.Rd
 34eca6655c7d5109608f8e6aad96e39a *man/bd.shifts.optim.Rd
 eb6ef114cf17c3ff72533057be6d53a0 *man/bd.shifts.plot.Rd
 702dfd3d11fcba46ad6f91c3c7603818 *man/bdsky.stt.optim.Rd
+fc3248292329cf1af77e0813bff6d516 *man/create.mat.Rd
 64420b0e6d8a259e6b496f3fdcc58b90 *man/get.groups.Rd

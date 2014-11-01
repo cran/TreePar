@@ -1,2 +1,2 @@
-export(bd.shifts.optim,bd.densdep.optim,LikShifts, LikConstant, LikConstantn,LikShiftsPP,bd.shifts.plot,LikTypesSTT,LikShiftsSTT,LikDD,bdsky.stt.optim,get.groups,addroot)
+export(bd.shifts.optim,bd.densdep.optim,LikShifts, LikConstant, LikConstantn,LikShiftsPP,bd.shifts.plot,LikTypesSTT,LikShiftsSTT,LikDD,bdsky.stt.optim,get.groups,addroot,LikAge,bd.age.optim.matlab,create.mat)
 import(ape, TreeSim, Matrix, deSolve, subplex)
