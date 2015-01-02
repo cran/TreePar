@@ -11,8 +11,8 @@ Estimating birth and death rates based on phylogenies}
 \tabular{ll}{
 Package: \tab TreePar\cr
 Type: \tab Package\cr
-Version: \tab 3.2\cr
-Date: \tab 2014-11-01\cr
+Version: \tab 3.3\cr
+Date: \tab 2015-01-02\cr
 License: \tab GPL-2 \cr
 LazyLoad: \tab yes\cr
 }

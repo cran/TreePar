@@ -103,9 +103,11 @@ print(" ")
 # condition on age of tree x[1], survival = 0
 N<-10
 pars <- matrix(c(N,lambdavec[1],muvec[1],0,sampling),nrow=1)
-\donttest{library(expoTree)
-print(-runExpoTree(pars,sort(x2),rep(1,length(x2)),survival=0)+(length(x)-1)*log(2))
+\donttest{
 print(LikDD(c(lambdavec[1],muvec[1],N),x=sort(x),model=-1,root=1,sampling=sampling)[1])
+## If you have the R package expoTree, you can compare:
+# library(expoTree)
+# print(-runExpoTree(pars,sort(x2),rep(1,length(x2)),survival=0)+(length(x)-1)*log(2))
 print(" ")}
 
 ### calculate likelihoods with root = 0
@@ -127,7 +129,8 @@ print(" ")
 }
 ## Diversity-dependent speciation rates
 # condition on age of tree x[1], survival = 0
-\donttest{print(-runExpoTree(pars,sort(x),rep(1,length(x)),survival=0)+(length(x)-1)*log(2))}
 print(LikDD(c(lambdavec[1],muvec[1],N),x=sort(x),model=-1,root=0,sampling=sampling)[1])
+## If you have the R package expoTree, you can compare:
+#	print(-runExpoTree(pars,sort(x),rep(1,length(x)),survival=0)+(length(x)-1)*log(2))
 }
 

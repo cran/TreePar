@@ -28,14 +28,14 @@ H. Alexander, A. Lambert, T. Stadler. Quantifying Age-Dependent Extinction from 
 \author{
 Helen Alexander, Tanja Stadler}
 \examples{
-\donttest{	
-# directory where MCR is installed
-path<-"/Applications/MATLAB_R2014a_node.app/"
-#location of folder TreePar_Matlab containing compiled Matlab applications (see ?LikAge)
-locationMat<-"/Users/tstadler/Documents/Data/Uni/Research/R/TreeParProject/TreePar_Matlab"
-#
-x<-1:20
-setwd(paste(locationMat,"/compiled",sep=""))
-out<-create.mat(x,path=path)
-}
+## You need MCR to run the example
+## directory where MCR is installed
+# path<-"/Applications/MATLAB_R2014a_node.app/"
+## location of folder TreePar_Matlab containing compiled Matlab applications (see ?LikAge)
+# locationMat<-"/Users/tstadler/Documents/Data/Uni/Research/R/TreeParProject/TreePar_Matlab"
+##
+# x<-1:20
+# setwd(paste(locationMat,"/compiled",sep=""))
+# out<-create.mat(x,path=path)
+
 }

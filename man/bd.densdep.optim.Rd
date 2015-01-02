@@ -57,8 +57,10 @@ bd.densdep.optim(x,discrete=FALSE,continuous=TRUE)
 res <- -bd.densdep.optim(x,Yule=TRUE,discrete=FALSE,continuous=TRUE)[[2]]$value 
 res<-res+ sum(log(2:length(x)))
 res
-library(laser)
-DDL(x)}
+
+# library(laser)
+# DDL(x)
+}
 }
 %\keyword{diversification rates}
 %\keyword{rate shifts}
